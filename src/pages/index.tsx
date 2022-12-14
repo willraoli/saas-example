@@ -166,7 +166,7 @@ const LoginButton = () => {
       onClick={() => signIn("google")}
     >
       <h3 className="text-2xl font-bold">Login with Google →</h3>
-      <div className="text-lg">Begin your mood journaling today. 😊</div>
+      <div className="text-lg">Begin journaling today. 😊</div>
     </button>
   );
 };
