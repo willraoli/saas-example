@@ -1,8 +1,7 @@
-import { Mood } from "@prisma/client";
-import { useSession } from "next-auth/react";
+import { type Mood } from "@prisma/client";
 import Head from "next/head";
 import Link from "next/link";
-import {
+import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
 } from "next/types";
@@ -14,7 +13,6 @@ const MOOD_LIMIT = 6;
 const MyMoods = ({
   moods,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  const { data: session } = useSession();
   return (
     <>
       <Head>
