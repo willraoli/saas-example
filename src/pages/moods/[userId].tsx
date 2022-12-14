@@ -36,6 +36,7 @@ const MyMoods = ({
                 key={mood.id}
               >
                 <span className="font-semibold italic">"{mood.text}"</span>
+                <span></span>
               </div>
             ))}
           </div>
