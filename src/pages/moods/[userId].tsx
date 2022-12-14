@@ -35,7 +35,9 @@ const MyMoods = ({
                 className="rounded-xl bg-white/20 p-4 text-white"
                 key={mood.id}
               >
-                <span className="font-semibold italic">"{mood.text}"</span>
+                <span className="font-semibold italic">
+                  &quot;{mood.text}&quot;
+                </span>
                 <span></span>
               </div>
             ))}
