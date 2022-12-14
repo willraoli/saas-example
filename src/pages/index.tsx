@@ -11,6 +11,11 @@ const Home: NextPage = () => {
 
   const submitMood = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+
+    if (!session) {
+      return alert("You must sign in first.");
+    }
+
     try {
       await fetch(`/api/mood`, {
         method: "POST",
@@ -42,7 +47,12 @@ const Home: NextPage = () => {
         <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
           <Greeting session={session} />
           <form onSubmit={submitMood} className="flex gap-2">
-            <MoodInput onChange={handleMood} value={text} />
+            <MoodInput
+              session={session}
+              onChange={handleMood}
+              value={text}
+              disabled={!session}
+            />
             <SaveMoodButton />
           </form>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
@@ -68,16 +78,19 @@ const Home: NextPage = () => {
 type MoodInputProps = {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   value: string;
+  disabled: boolean;
+  session: Session | null;
 };
 
 const MoodInput = (props: MoodInputProps) => {
   return (
     <input
       type="text"
-      className="rounded-xl p-4 text-center text-lg font-semibold focus:ring-blue-500"
-      placeholder="What's on your mind?"
+      className="rounded-xl p-4 text-center text-lg font-semibold focus:ring-blue-500 disabled:cursor-not-allowed disabled:bg-white/40"
+      placeholder={props.session ? "What's on your mind?" : "Please sign in"}
       onChange={props.onChange}
       value={props.value}
+      disabled={props.disabled}
     />
   );
 };
