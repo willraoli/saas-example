@@ -6,6 +6,7 @@ import type {
   InferGetServerSidePropsType,
 } from "next/types";
 import { getServerAuthSession } from "../../server/common/get-server-auth-session";
+import { prisma } from "../../server/db/client";
 
 // placeholder config
 const MOOD_LIMIT = 6;
@@ -52,7 +53,7 @@ export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
   const session = await getServerAuthSession(context);
-  const moods: Mood[] | undefined = await prisma?.mood.findMany({
+  const moods: Mood[] | undefined = await prisma.mood.findMany({
     where: {
       userId: {
         equals: session?.user?.id,
