@@ -19,6 +19,10 @@ export const serverSchema = z.object({
     // VERCEL_URL doesn't include `https` so it cant be validated as a URL
     process.env.VERCEL ? z.string() : z.string().url()
   ),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_CLIENT_SECRET: z.string(),
+  OPEN_WEATHER_KEY: z.string(),
+  OPEN_CAGE_KEY: z.string(),
 });
 
 /**
